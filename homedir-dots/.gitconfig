@@ -1,0 +1,9 @@
+[init]
+	defaultBranch = main
+[user]
+	name = Sam Price
+	email = sam@typicalsamprice.com
+
+[alias]
+	s = status --short
+	l = log --oneline
