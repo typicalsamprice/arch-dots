@@ -5,6 +5,8 @@ set -x
 
 base=$(pwd)
 
+USE_KDE=false
+
 ### LINK LIBINPUT CONF FILES ###
 cd libinput
 
@@ -27,7 +29,7 @@ cd "$base"
 cd config-folder-dots
 
 for folder in $(ls -A1); do
-	ln -sf "$(pwd)/$folder"
+	ln -sf "$(pwd)/$folder" "${XDG_CONFIG_HOME:-$HOME/.config}/$folder"
 done
 
 cd "$base"
@@ -38,11 +40,12 @@ sudo pacman -Syyu
 # Install yay / build deps
 sudo pacman -S --needed base-devel git pacman-contrib
 
-git clone https://aur.archlinux.org/yay.git /tmp/yay
-cd /tmp/yay
-makepkg -si
-
-cd "$base"
+if ! test -f /usr/bin/yay; then
+	git clone https://aur.archlinux.org/yay.git /tmp/yay
+	cd /tmp/yay
+	makepkg -si
+	cd "$base"
+fi
 
 ## Utils
 yay -S ripgrep fd cloc
@@ -59,11 +62,16 @@ yay -S alacritty
 ## Editors, prog-related
 yay -S emacs neovim
 
-sudo ln -s /usr/bin/nvim /usr/bin/vi
-sudo ln -s /usr/bin/nvim /usr/bin/vim
+if ! test -f /usr/bin/vi; then
+	sudo ln -s /usr/bin/nvim /usr/bin/vi
+fi
+if ! test -f /usr/bin/vim; then
+	sudo ln -s /usr/bin/nvim /usr/bin/vim
+fi
 
 ### Languages/Scripting
 yay -S gcc clang llvm
+yay -S cmake
 yay -S texlive
 yay -S rstudio-desktop-bin
 
@@ -83,10 +91,13 @@ yay -S amd-ucode intel-ucode
 
 ## Apps
 yay -S firefox
-yay -S network-manager-applet
 yay -S flameshot mpv
-yay -S pcmanfm
 yay -S obs-studio
+
+if NOT_KDE; then
+	yay -S pcmanfm
+	yay -S network-manager-applet
+fi
 
 ## Fonts
 yay -S nerd-fonts
