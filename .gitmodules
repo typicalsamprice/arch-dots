@@ -1,0 +1,3 @@
+[submodule "catppuccin-zathura"]
+	path = catppuccin-zathura
+	url = https://github.com/catppuccin/zathura.git

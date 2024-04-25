@@ -72,8 +72,9 @@ fi
 ### Languages/Scripting
 yay -S gcc clang llvm
 yay -S cmake
-yay -S texlive
 yay -S rstudio-desktop-bin
+
+yay -S texlive
 
 #### Rust
 yay -S rustup
