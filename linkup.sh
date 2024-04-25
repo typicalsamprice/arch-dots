@@ -40,7 +40,7 @@ cd "$base"
 sudo pacman -Syyu
 
 # Install yay / build deps
-sudo pacman -S --needed base-devel git pacman-contrib
+sudo pacman -S --needed --noconfirm base-devel git pacman-contrib
 
 if ! test -f /usr/bin/yay; then
 	git clone https://aur.archlinux.org/yay.git /tmp/yay
@@ -50,19 +50,19 @@ if ! test -f /usr/bin/yay; then
 fi
 
 ## Utils
-yay -S ripgrep fd cloc
-yay -S unrar unzip zip xz gzip
-yay -S wget curl
-yay -S eza
+yay -S --needed --noconfirm ripgrep fd cloc
+yay -S --needed --noconfirm unrar unzip zip xz gzip
+yay -S --needed --noconfirm wget curl
+yay -S --needed --noconfirm eza
 
-yay -S zathura zathura-pdf-poppler
+yay -S --needed --noconfirm zathura zathura-pdf-poppler
 
 ## Terminals
 # Alacritty works w/ both X and Wayland
-yay -S alacritty
+yay -S --needed --noconfirm alacritty
 
 ## Editors, prog-related
-yay -S emacs neovim
+yay -S --needed --noconfirm emacs neovim
 
 if ! test -f /usr/bin/vi; then
 	sudo ln -s /usr/bin/nvim /usr/bin/vi
@@ -72,53 +72,53 @@ if ! test -f /usr/bin/vim; then
 fi
 
 ### Languages/Scripting
-yay -S gcc clang llvm
-yay -S cmake
-yay -S rstudio-desktop-bin
+yay -S --needed --noconfirm gcc clang llvm
+yay -S --needed --noconfirm cmake
+yay -S --needed --noconfirm rstudio-desktop-bin
 
-yay -S texlive
+yay -S --needed --noconfirm texlive
 
 #### Rust
-yay -S rustup
+yay -S --needed --noconfirm rustup
 rustup default stable
 rustup component add rust-analyzer
 
 ## System Tools
-yay -S networkmanager
-yay -S pavucontrol
-yay -S inetutils
-yay -S bluez bluez-utils
+yay -S --needed --noconfirm networkmanager
+yay -S --needed --noconfirm pavucontrol
+yay -S --needed --noconfirm inetutils
+yay -S --needed --noconfirm bluez bluez-utils
 
 ## Microcode updates
-yay -S amd-ucode intel-ucode
+yay -S --needed --noconfirm amd-ucode intel-ucode
 
 ## Apps
-yay -S firefox
-yay -S flameshot mpv
-yay -S obs-studio
+yay -S --needed --noconfirm firefox
+yay -S --needed --noconfirm flameshot mpv
+yay -S --needed --noconfirm obs-studio
 
 if NOT_KDE; then
-	yay -S pcmanfm
-	yay -S network-manager-applet
+	yay -S --needed --noconfirm pcmanfm
+	yay -S --needed --noconfirm network-manager-applet
 fi
 
 ## Fonts
-yay -S nerd-fonts
-yay -S ttf-monaco-nerd-font-git
+yay -S --needed --noconfirm nerd-fonts
+yay -S --needed --noconfirm ttf-monaco-nerd-font-git
 
 ## WMs
 # X
-yay -S awesome
-yay -S sxiv
+yay -S --needed --noconfirm awesome
+yay -S --needed --noconfirm sxiv
 
 # Wayland
 ## Hyprland
-yay -S hyprland hypridle hyprcursor
-yay -S xdg-desktop-portal-hyprland
+yay -S --needed --noconfirm hyprland hypridle hyprcursor
+yay -S --needed --noconfirm xdg-desktop-portal-hyprland
 
 ## General Wayland
-yay -S swaybg swaync
-yay -S waybar waylock
-yay -S wlogout wlsunset
-yay -S imv
-yay -S hyprpicker
+yay -S --needed --noconfirm swaybg swaync
+yay -S --needed --noconfirm waybar waylock
+yay -S --needed --noconfirm wlogout wlsunset
+yay -S --needed --noconfirm imv
+yay -S --needed --noconfirm hyprpicker
