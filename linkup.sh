@@ -29,7 +29,9 @@ cd "$base"
 cd config-folder-dots
 
 for folder in $(ls -A1); do
-	ln -sf "$(pwd)/$folder" "${XDG_CONFIG_HOME:-$HOME/.config}/$folder"
+	if ! test -d "${XDG_CONFIG_HOME:-$HOME/.config}/$folder"; then
+		ln -sf "$(pwd)/$folder" "${XDG_CONFIG_HOME:-$HOME/.config}/$folder"
+	fi
 done
 
 cd "$base"
